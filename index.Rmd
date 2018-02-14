@@ -4,7 +4,7 @@ subtitle: "Measuring Earth's Variability"
 ---
 
 # Description
-Early draft of remote sensing-derived _geodiversity_ Products.  Blah blah.
+Available geophysical remote sensing products from NASA, with their spatial and temporal scales. 
 
 
 ```{r, warning=F, message=F}
@@ -13,15 +13,19 @@ library(dplyr)
 library(DT)
 library(htmlwidgets)
 
-ds=gs_key("1d3PPHV1rKS3cn81-15ptVzPw_3GNmIEyWJruwLfUPRQ")
-#d=gs_read(ds,ws="Original")
-d=gs_read_listfeed(ds,ws="Original", verbose=FALSE)
+ds=gs_key("11cFdkQNeevHMnJ2HxqbxoD3HBEZfXY31mdF9psZmw2k")
+d=gs_read_listfeed(ds,ws="FINAL", verbose=FALSE)
 
 d2=d%>%
-  mutate(Geodiversity=as.factor(Geodiversity),
-         Acronym=as.factor(Acronym),
-         link=paste("<a href=",Link,">link</a>"))%>%
-  select(-one_of("Spatial Resolution","Temporal Notes","Link", "Agency"))
+  slice(-c(1:3))%>%
+          mutate(
+            Acronym=as.factor(Acronym),
+            link=paste("<a href=",Link,">link</a>"))%>%
+    select(
+      -one_of(c("Spatial Resolution","Temporal Notes","Data Link","Link","Lithosphere")),
+      -starts_with("X"),
+      -contains("date start"),
+      -contains("date stop"))
 
 d2%>%datatable(
   filter = 'top', 

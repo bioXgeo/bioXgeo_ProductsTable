@@ -19,7 +19,7 @@ d2=d%>%
   slice(-c(1:3))%>%
           mutate(
             Acronym=as.factor(Acronym),
-            link=paste("<a href=",Link,"><img src=assets/external-link.png</img></a>"))%>%
+            link=paste("<a href=",Link,"><img src=assets/external-link.png width=15 height=15 </img></a>"))%>%
     select(
       -one_of(c("Spatial Resolution","Temporal Notes","Data Link","Link","Lithosphere")),
       -starts_with("X"),
@@ -34,7 +34,8 @@ d2%>%datatable(
   ),
   class = 'cell-border stripe',
   caption = ''
-  )%>%
-  frameWidget(height =500)
+  )
+#%>%
+#  frameWidget()
 ```
 

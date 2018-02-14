@@ -10,6 +10,7 @@ library(googlesheets)
 library(dplyr)
 library(DT)
 library(htmlwidgets)
+library(widgetframe)
 
 ds=gs_key("11cFdkQNeevHMnJ2HxqbxoD3HBEZfXY31mdF9psZmw2k")
 d=gs_read_listfeed(ds,ws="FINAL", verbose=FALSE)
@@ -33,6 +34,7 @@ d2%>%datatable(
   ),
   class = 'cell-border stripe',
   caption = ''
-  )
+  )%>%
+  frameWidget(height =500)
 ```
 

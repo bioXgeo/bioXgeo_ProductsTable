@@ -4,8 +4,7 @@ output:
     theme: cosmo
     highlight: textmate
     mathjax: ~
-    code_folding: hide
-    toc: yes
+    toc: no
     toc_depth: 2
     toc_float:
       collapsed: yes
